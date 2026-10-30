@@ -1,0 +1,470 @@
+/* Dark workbench (BRIEF.md, Style; the approved v2 mockups): a charcoal
+   ground, steel-gray square panels with hard edges, and color only where it
+   is game information. */
+:root {
+  --ground: #1c1e21;
+  --edge: #0b0c0e;
+  --glass: #121417;
+  --modal: #16181c;
+  --border: #4a5058;
+  --button: #4a5058;
+  --button-hi: #6a727c;
+  --button-lo: #30353b;
+  --well: #16181b;
+  --text: #e4e7ea;
+  --dim: #a0a7b0;
+  --faint: #6c737c;
+  --bar: #c9ccd0;
+  --bar-back: #1d2024;
+  --reject: #d8343a;
+  /* the mat behind item pictures: light enough that black reads on it */
+  --hatch-a: #4c5158;
+  --hatch-b: #5c616a;
+  --font: "Terminus", "DejaVu Sans Mono", "Liberation Mono", ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; height: 100%; overflow: hidden; }
+body {
+  background: var(--ground);
+  color: var(--text);
+  font: 15px/1.3 var(--font);
+  -webkit-font-smoothing: none;
+  user-select: none;
+}
+/* a menu over the game (pause, settings) dims the world behind it */
+body[data-menu="true"] #world { filter: brightness(0.45); }
+#world {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  image-rendering: pixelated;
+  display: block;
+}
+#ui { position: fixed; inset: 0; pointer-events: none; }
+#ui > * { pointer-events: auto; }
+body[data-screen="setup"] #ui, body[data-screen="daily"] #ui,
+body[data-screen="online"] #ui, body[data-screen="lobby"] #ui { background: #0e0f11; }
+/* the main menu dims the backdrop factory running behind it */
+body[data-screen="menu"] #ui { background: rgba(14, 15, 17, 0.5); }
+
+.pic { image-rendering: pixelated; display: block; }
+.item {
+  background: repeating-linear-gradient(135deg, var(--hatch-a) 0 3px, var(--hatch-b) 3px 5px);
+}
+
+button {
+  font: inherit;
+  color: var(--text);
+  background: var(--button);
+  border: 2px solid var(--edge);
+  box-shadow: inset 2px 2px 0 var(--button-hi), inset -2px -2px 0 var(--button-lo);
+  padding: 8px 20px;
+  cursor: pointer;
+  border-radius: 0;
+}
+button:hover { background: #555c65; }
+button.selected { outline: 3px solid var(--text); outline-offset: 2px; background: #2a2e34; }
+button.primary { background: var(--bar); color: #111317; box-shadow: none; }
+button.big { width: 440px; padding: 18px; font-size: 22px; display: block; margin: 0 0 18px; }
+/* the main menu's chosen button stands out lighter, not pressed in */
+button.big.selected { background: var(--button-hi); outline-offset: 3px; }
+button:focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
+button:disabled { cursor: default; color: var(--dim); background: var(--button-lo); box-shadow: none; }
+button.selected:disabled { color: var(--text); background: #2a2e34; }
+
+.box {
+  position: absolute;
+  background: var(--glass);
+  border: 2px solid var(--border);
+}
+.modal {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--modal);
+  min-width: 460px;
+}
+h1, h2 { margin: 0; font-weight: bold; }
+h2 { font-size: 22px; padding: 10px 14px; border-bottom: 2px solid #2a2e34; }
+.foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px;
+  border-top: 2px solid #2a2e34;
+}
+
+/* main menu */
+#menu {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#logo { width: 960px; max-width: 70vw; image-rendering: pixelated; display: block; margin: 0 0 48px; }
+
+/* the version, bottom right of the main menu, and What's New */
+#version {
+  position: absolute;
+  right: 16px;
+  bottom: 12px;
+  padding: 4px 10px;
+  font-size: 13px;
+  color: var(--dim);
+  background: transparent;
+  border: 2px solid var(--border);
+  box-shadow: none;
+}
+#version:hover { color: var(--text); background: var(--button-lo); }
+#notes { width: min(640px, calc(100vw - 32px)); }
+
+/* saved factories: the list over the main menu, and the look-only view's button */
+#saved { width: min(720px, calc(100vw - 32px)); }
+#saved .saved-list { max-height: 62vh; overflow-y: auto; padding: 6px 24px; }
+#saved .saved-row { display: flex; align-items: center; gap: 24px; padding: 12px 0; border-bottom: 2px solid #2a2e34; }
+#saved .saved-row:last-child { border-bottom: 0; }
+#saved .saved-pic { width: 72px; height: 72px; image-rendering: pixelated; box-shadow: 0 0 0 3px var(--hatch-b); }
+#saved .facts { flex: 1; display: flex; gap: 24px; align-items: baseline; font-size: 18px; }
+#saved .facts .level { width: 90px; }
+#saved .facts .time { width: 70px; font-weight: bold; }
+#saved .facts .date { color: var(--faint); }
+#saved .acts { display: flex; gap: 10px; }
+#viewing { position: absolute; right: 16px; top: 12px; }
+#notes .notes-list { max-height: 60vh; overflow-y: auto; padding: 6px 24px 14px; user-select: text; }
+#notes .note { padding: 12px 0; border-bottom: 2px solid #2a2e34; }
+#notes .note:last-child { border-bottom: 0; }
+#notes .note-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+#notes .note-version { font-size: 18px; font-weight: bold; }
+#notes .note-date { color: var(--faint); }
+#notes ul { margin: 0; padding-left: 20px; }
+#notes li { margin: 3px 0; }
+#notes .note.fix { padding: 8px 0; }
+#notes .note.fix .note-version { font-size: 15px; color: var(--dim); }
+#notes .note.fix li { color: var(--dim); }
+
+/* solo setup */
+#setup .row { display: flex; align-items: center; gap: 24px; padding: 14px 24px; }
+#setup .label { width: 140px; font-size: 18px; }
+#setup .options { display: flex; gap: 10px; }
+#setup .options button { width: 140px; }
+#setup .value { font-size: 18px; }
+#setup .recipe-row { display: flex; justify-content: center; padding: 14px 24px; }
+#setup .recipe-row .recipe-pic { cursor: default; }
+#setup .offer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 10px 24px 0;
+  padding: 12px 0 0;
+  border-top: 2px solid #2a2e34;
+  color: var(--dim);
+}
+#setup .offer button { padding: 6px 16px; }
+
+/* recipe card */
+#recipe { left: 24px; bottom: 24px; display: flex; gap: 18px; padding: 12px; }
+/* a 4 px mat in the empty-cell hatch's tone round the picture, so black at
+   its edge reads against the dark card (R1.604) */
+.recipe-pic { width: 128px; height: 128px; cursor: pointer; box-shadow: 0 0 0 4px var(--hatch-b); }
+
+/* the big recipe view (Tab, or a click on the recipe) and its color tip */
+#recipe-view { background: var(--modal); }
+#recipe-view .pic { cursor: pointer; }
+#recipe-tip { pointer-events: none; padding: 4px 8px; white-space: nowrap; background: var(--modal); }
+.counts { display: flex; flex-direction: column; justify-content: space-between; width: 140px; }
+.counts .clock { color: var(--dim); font-size: 18px; font-variant-numeric: tabular-nums; min-height: 1.2em; }
+.big-number { font-size: 28px; font-weight: bold; }
+.goal { color: var(--dim); font-size: 18px; }
+.bar { height: 6px; background: var(--bar-back); margin-top: 6px; }
+.bar .fill { height: 100%; background: var(--bar); }
+.rejects { display: flex; align-items: center; gap: 8px; color: var(--dim); font-size: 18px; }
+.rejects .dot { width: 6px; height: 6px; background: var(--reject); }
+.rejects .n { margin-left: auto; color: var(--text); }
+
+/* hotbar */
+/* Every building (--n slots, set by the page) between the recipe card (to
+   356 px) and a 24 px right margin: a slot is 104 px wide where that fits
+   and narrower below, so the bar never runs off the screen (13 slots at
+   1280 px wide: 59 px). */
+#hotbar {
+  --n: 10;
+  --slot: clamp(52px, calc((100vw - 400px - var(--n) * 6px) / var(--n)), 104px);
+  left: max(calc(50% - (var(--slot) * var(--n) + var(--n) * 6px + 6px) / 2), 356px);
+  bottom: 24px;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+}
+.slot { display: flex; flex-direction: column; align-items: center; width: var(--slot, 104px); }
+.slot-label { font-size: 11px; color: var(--dim); height: 16px; white-space: nowrap; }
+.slot-button {
+  position: relative;
+  width: 100%;
+  height: 52px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--well);
+  box-shadow: none;
+  border: 2px solid #2a2e34;
+}
+.slot-button.selected { outline: 2px solid var(--text); outline-offset: 0; }
+.slot-button .key { position: absolute; left: 3px; top: 1px; font-size: 10px; color: var(--faint); }
+.icon { width: 40px; height: 40px; object-fit: contain; }
+/* narrow slots: a long name takes two lines instead of running into the
+   next slot */
+@media (max-width: 1489px) {
+  #hotbar .slot-label { white-space: normal; text-align: center; line-height: 1.1; height: 26px; display: flex; align-items: flex-end; }
+}
+
+/* build menu (E) */
+#build {
+  left: 50%;
+  bottom: 120px;
+  transform: translateX(-50%);
+  display: grid;
+  grid-template-columns: repeat(5, 104px);
+  gap: 6px;
+  padding: 8px;
+}
+.build-item { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 8px; background: var(--well); box-shadow: none; }
+#build .slot-label { white-space: normal; text-align: center; line-height: 1.1; height: 26px; display: flex; align-items: center; }
+
+/* the exit's name, over its top edge */
+#output-tag {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  padding: 0 4px;
+  font-size: 13px;
+  color: var(--dim);
+  background: var(--glass);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* countdown */
+/* the tutorial's prompt, top middle */
+#prompt {
+  left: 50%;
+  top: 24px;
+  transform: translateX(-50%);
+  padding: 10px 18px;
+  font-size: 20px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+#countdown {
+  left: 50%;
+  top: 24px;
+  transform: translateX(-50%);
+  width: 136px;
+  height: 136px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  font-weight: bold;
+}
+
+/* machine panel */
+#panel .head { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #2a2e34; }
+#panel .head h2 { border: 0; }
+#panel .close { padding: 2px 10px; margin-right: 10px; }
+.flow { display: flex; align-items: center; justify-content: center; gap: 28px; padding: 24px 32px; border-bottom: 2px solid #2a2e34; }
+/* wells and hover pictures sit on the item mat, so black reads (R1.604) */
+.well { background: repeating-linear-gradient(135deg, var(--hatch-a) 0 3px, var(--hatch-b) 3px 5px); border: 2px solid var(--edge); padding: 2px; }
+#hover .pic { background: repeating-linear-gradient(135deg, var(--hatch-a) 0 3px, var(--hatch-b) 3px 5px); }
+.large { width: 128px; height: 128px; }
+.stack-in { display: flex; flex-direction: column; gap: 10px; }
+.stack-in .large { width: 96px; height: 96px; }
+.in-well { position: relative; }
+.in-well .count {
+  position: absolute;
+  right: 4px;
+  bottom: 2px;
+  padding: 0 3px;
+  font-size: 14px;
+  background: var(--well);
+  color: var(--text);
+}
+.arrow { width: 180px; }
+.arrow .shaft { height: 3px; background: var(--dim); }
+.cuts { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; padding: 18px 32px; width: 600px; }
+.cut { padding: 8px; width: 84px; height: 84px; }
+.cut .icon { width: 64px; height: 64px; }
+.cut.selected { outline: 3px solid var(--text); }
+
+/* win */
+#won h1 { font-size: 44px; text-align: center; padding: 28px; }
+.won-body { display: flex; align-items: center; justify-content: center; gap: 40px; padding: 0 40px 28px; }
+.won-time { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.won-time .best { font-size: 18px; color: var(--dim); white-space: pre; }
+
+/* settings (mockup A) */
+#settings { width: min(1180px, calc(100vw - 32px)); }
+#settings .body { padding: 10px 32px 18px; }
+#settings .row { display: flex; align-items: center; gap: 24px; padding: 12px 0; }
+#settings .label { width: 140px; font-size: 18px; }
+#settings .options { display: flex; gap: 10px; }
+#settings .options button { width: 120px; }
+#settings .row .n { width: 40px; text-align: right; font-size: 18px; }
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 500px;
+  height: 10px;
+  margin: 0;
+  border: 2px solid var(--edge);
+  background: linear-gradient(to right, var(--bar) calc(var(--fill, 0) * 100%), var(--bar-back) 0);
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 24px;
+  background: var(--button);
+  border: 2px solid var(--edge);
+  box-shadow: inset 2px 2px 0 var(--button-hi), inset -2px -2px 0 var(--button-lo);
+  cursor: pointer;
+}
+.slider::-moz-range-thumb { width: 10px; height: 20px; background: var(--button); border: 2px solid var(--edge); border-radius: 0; }
+.slider::-moz-range-progress { background: var(--bar); height: 6px; }
+#settings .section { border-top: 2px solid #2a2e34; margin-top: 8px; padding-top: 14px; }
+#settings .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+#settings .section-head button { padding: 4px 14px; }
+#settings .strip { display: flex; gap: 6px; padding: 6px; background: var(--glass); border: 2px solid var(--border); width: max-content; }
+#settings .slot-button.selected { outline: 3px solid var(--text); outline-offset: 1px; background: #2a2e34; }
+#settings .choices { display: grid; grid-template-columns: repeat(8, 104px); gap: 6px; margin-top: 16px; }
+#settings .choices .build-item { height: 80px; justify-content: center; gap: 2px; border: 2px solid #2a2e34; }
+#settings .choices .build-item.selected { outline: 3px solid var(--text); outline-offset: 1px; background: #2a2e34; }
+#settings .choices .build-item.used .pic { opacity: 0.35; }
+#settings .choices .build-item.used .slot-label { color: var(--faint); }
+#settings .choices .slot-label { white-space: normal; text-align: center; height: auto; line-height: 1.1; }
+#pause .foot button { min-width: 150px; }
+
+#message { position: fixed; left: 50%; top: 8px; transform: translateX(-50%); margin: 0; color: var(--reject); }
+
+#hover {
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 6px;
+}
+#hover .hover-pic {
+  width: 96px;
+  height: 96px;
+}
+#hover .hover-name {
+  white-space: nowrap;
+}
+#hover .layers {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+#hover .layers canvas {
+  width: 28px;
+  height: 28px;
+}
+#hover .slots {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+#hover .slots .large {
+  width: 44px;
+  height: 44px;
+}
+
+/* online game: host or join */
+#online .row { display: flex; gap: 12px; padding: 18px 24px 0; }
+#online .foot { margin-top: 18px; }
+#online .row .primary { width: 100%; }
+.code-input {
+  flex: 1;
+  font: inherit;
+  font-size: 22px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text);
+  background: var(--well);
+  border: 2px solid var(--edge);
+  padding: 8px 14px;
+  border-radius: 0;
+  user-select: text;
+}
+#online .name-row { align-items: center; }
+#online .name-row .label { color: var(--dim); font-size: 16px; }
+.name-input {
+  flex: 1;
+  font: inherit;
+  font-size: 20px;
+  color: var(--text);
+  background: var(--well);
+  border: 2px solid var(--edge);
+  padding: 8px 14px;
+  border-radius: 0;
+  user-select: text;
+}
+.code-input::placeholder { color: var(--faint); text-transform: none; letter-spacing: 0; }
+
+/* lobby (mockups 06 and 06b) */
+#lobby { width: min(1000px, calc(100vw - 32px)); }
+.lobby-body { display: flex; gap: 40px; padding: 24px 32px; }
+.lobby-body .column { flex: 1; display: flex; flex-direction: column; gap: 10px; }
+.lobby-body .settings { border-left: 2px solid #2a2e34; padding-left: 40px; gap: 18px; }
+.lobby-body .label { color: var(--dim); font-size: 16px; }
+.lobby-body .row { display: flex; align-items: center; gap: 16px; }
+.lobby-body .row .label { width: 110px; color: var(--text); }
+.lobby-body .options { display: flex; gap: 6px; }
+.lobby-body .options button { width: 100px; padding: 8px 6px; }
+.code-row { display: flex; gap: 12px; margin-bottom: 14px; }
+.code { flex: 1 0 auto; font-size: 30px; font-weight: bold; padding: 10px 16px; letter-spacing: 2px; white-space: nowrap; }
+.code-row button { white-space: nowrap; }
+.players { display: flex; flex-direction: column; gap: 8px; }
+.player { display: flex; justify-content: space-between; align-items: baseline; height: 40px; padding: 0 14px; font-size: 18px; line-height: 36px; }
+.player .note { color: var(--dim); font-size: 14px; }
+.player.me { border-left: 4px solid var(--text); }
+button.tick { align-self: flex-start; background: none; border: 0; box-shadow: none; padding: 4px 0; font-size: 18px; outline: none; }
+button.tick::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  vertical-align: -3px;
+  border: 2px solid var(--border);
+  background: var(--well);
+}
+button.tick.selected::before { background: var(--text); box-shadow: inset 0 0 0 3px var(--well); }
+button.tick:disabled { background: none; }
+/* room for the recipe before it is ticked, so ticking does not move the box */
+.preview { display: flex; align-items: flex-start; gap: 24px; min-height: 192px; }
+.lobby-recipe { width: 192px; height: 192px; }
+#lobby > .note { margin: 0; padding: 0 32px 16px; color: var(--dim); font-size: 18px; }
+
+/* scoreboard (mockup 01: top right) */
+#scores { right: 24px; top: 24px; padding: 8px 10px; display: flex; flex-direction: column; gap: 6px; width: 300px; }
+.score { display: flex; align-items: center; gap: 10px; color: var(--dim); font-size: 18px; padding-left: 6px; border-left: 3px solid transparent; }
+.score.me { color: var(--text); border-left-color: var(--text); }
+.score.gone { color: var(--faint); }
+.score .name { width: 96px; white-space: nowrap; }
+.score .bar { flex: 1; margin-top: 0; }
+.score .n { width: 40px; text-align: right; }
+
+/* online result (mockup 08) */
+.standings { display: flex; flex-direction: column; gap: 6px; min-width: 360px; }
+.standing { display: flex; gap: 16px; font-size: 20px; padding: 4px 10px; color: var(--dim); border-left: 3px solid transparent; }
+.standing.me { color: var(--text); background: #2a2e34; border-left-color: var(--text); }
+.standing.gone { color: var(--faint); }
+.standing .rank { width: 20px; }
+.standing .n { margin-left: auto; color: var(--text); }

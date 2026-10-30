@@ -1,0 +1,86 @@
+{
+  "_about": "Action sounds, synthesized by web/sound.js (contract 19, RS-10). Times are seconds, pitches Hz. volume: the master gain when settings give none. throttle: the shortest gap between two plays of one event (a belt drag fires many places). floor: the near-silent gain envelopes start from and fall to (an exponential ramp cannot reach 0). noise: a fixed white-noise buffer made by a Park-Miller generator (seed, mul, mod), samples long. Each event is a list of layers. A layer: wave (sine, square, triangle, sawtooth, or noise), at (start), freq and optional freq_end (an exponential glide over the layer), gain (peak), attack, decay (to floor), optional filter {type, freq, freq_end, q}, and optional repeat with every (seconds between repeats) and step (freq and filter freq multiplied by it at each repeat).",
+  "volume": 0.6,
+  "throttle": 0.035,
+  "floor": 0.0001,
+  "noise": {"seed": 1234567, "mul": 16807, "mod": 2147483647, "samples": 16384},
+  "events": {
+    "delivered": [
+      {"wave": "triangle", "at": 0, "freq": 659.25, "gain": 0.07, "attack": 0.004, "decay": 0.14, "filter": {"type": "lowpass", "freq": 2600, "q": 0.7}},
+      {"wave": "triangle", "at": 0.06, "freq": 987.77, "gain": 0.06, "attack": 0.004, "decay": 0.2, "filter": {"type": "lowpass", "freq": 2600, "q": 0.7}}
+    ],
+    "rejected": [
+      {"wave": "square", "at": 0, "freq": 110, "gain": 0.06, "attack": 0.004, "decay": 0.16, "filter": {"type": "lowpass", "freq": 700, "q": 0.7}},
+      {"wave": "square", "at": 0.07, "freq": 98, "gain": 0.05, "attack": 0.004, "decay": 0.18, "filter": {"type": "lowpass", "freq": 700, "q": 0.7}}
+    ],
+    "place": [
+      {"wave": "sine", "at": 0, "freq": 160, "freq_end": 70, "gain": 0.7, "attack": 0.002, "decay": 0.06},
+      {"wave": "noise", "at": 0, "gain": 0.3, "attack": 0.001, "decay": 0.016, "filter": {"type": "lowpass", "freq": 1800, "q": 0.7}}
+    ],
+    "remove": [
+      {"wave": "noise", "at": 0, "gain": 0.18, "attack": 0.026, "decay": 0.01, "filter": {"type": "bandpass", "freq": 3200, "freq_end": 1200, "q": 1.4}},
+      {"wave": "triangle", "at": 0.006, "freq": 720, "freq_end": 300, "gain": 0.16, "attack": 0.018, "decay": 0.03}
+    ],
+    "rotate": [
+      {"wave": "noise", "at": 0, "gain": 0.28, "attack": 0.001, "decay": 0.009, "repeat": 3, "every": 0.022, "step": 1.15, "filter": {"type": "bandpass", "freq": 2600, "q": 4}},
+      {"wave": "triangle", "at": 0, "freq": 1100, "gain": 0.08, "attack": 0.001, "decay": 0.008, "repeat": 3, "every": 0.022, "step": 1.15}
+    ],
+    "rotate_back": [
+      {"wave": "noise", "at": 0, "gain": 0.28, "attack": 0.001, "decay": 0.009, "repeat": 3, "every": 0.022, "step": 0.87, "filter": {"type": "bandpass", "freq": 2600, "q": 4}},
+      {"wave": "triangle", "at": 0, "freq": 1100, "gain": 0.08, "attack": 0.001, "decay": 0.008, "repeat": 3, "every": 0.022, "step": 0.87}
+    ],
+    "pick": [
+      {"wave": "square", "at": 0, "freq": 1900, "gain": 0.05, "attack": 0.001, "decay": 0.014, "filter": {"type": "lowpass", "freq": 4000, "q": 0.7}},
+      {"wave": "sine", "at": 0, "freq": 950, "gain": 0.12, "attack": 0.001, "decay": 0.022}
+    ],
+    "copy": [
+      {"wave": "triangle", "at": 0, "freq": 1250, "gain": 0.16, "attack": 0.002, "decay": 0.028},
+      {"wave": "triangle", "at": 0.04, "freq": 1700, "gain": 0.16, "attack": 0.002, "decay": 0.03}
+    ],
+    "cut": [
+      {"wave": "noise", "at": 0, "gain": 0.3, "attack": 0.002, "decay": 0.05, "filter": {"type": "bandpass", "freq": 5200, "freq_end": 1800, "q": 3}},
+      {"wave": "triangle", "at": 0, "freq": 1600, "gain": 0.1, "attack": 0.001, "decay": 0.014}
+    ],
+    "paste": [
+      {"wave": "sine", "at": 0, "freq": 230, "freq_end": 115, "gain": 0.45, "attack": 0.002, "decay": 0.045},
+      {"wave": "noise", "at": 0, "gain": 0.22, "attack": 0.001, "decay": 0.016, "filter": {"type": "lowpass", "freq": 2600, "q": 0.7}},
+      {"wave": "sine", "at": 0.038, "freq": 330, "freq_end": 160, "gain": 0.32, "attack": 0.002, "decay": 0.04},
+      {"wave": "noise", "at": 0.038, "gain": 0.16, "attack": 0.001, "decay": 0.012, "filter": {"type": "lowpass", "freq": 3200, "q": 0.7}}
+    ],
+    "undo": [
+      {"wave": "triangle", "at": 0, "freq": 880, "gain": 0.15, "attack": 0.003, "decay": 0.034, "filter": {"type": "lowpass", "freq": 3000, "q": 0.7}},
+      {"wave": "triangle", "at": 0.045, "freq": 620, "gain": 0.15, "attack": 0.003, "decay": 0.04, "filter": {"type": "lowpass", "freq": 3000, "q": 0.7}}
+    ],
+    "redo": [
+      {"wave": "triangle", "at": 0, "freq": 620, "gain": 0.15, "attack": 0.003, "decay": 0.034, "filter": {"type": "lowpass", "freq": 3000, "q": 0.7}},
+      {"wave": "triangle", "at": 0.045, "freq": 880, "gain": 0.15, "attack": 0.003, "decay": 0.04, "filter": {"type": "lowpass", "freq": 3000, "q": 0.7}}
+    ],
+    "setting": [
+      {"wave": "square", "at": 0, "freq": 600, "gain": 0.1, "attack": 0.001, "decay": 0.012, "filter": {"type": "lowpass", "freq": 2400, "q": 0.7}},
+      {"wave": "noise", "at": 0, "gain": 0.16, "attack": 0.001, "decay": 0.006, "filter": {"type": "bandpass", "freq": 4200, "q": 2}}
+    ],
+    "settings_copy": [
+      {"wave": "square", "at": 0, "freq": 600, "gain": 0.08, "attack": 0.001, "decay": 0.012, "filter": {"type": "lowpass", "freq": 2400, "q": 0.7}},
+      {"wave": "square", "at": 0.035, "freq": 900, "gain": 0.08, "attack": 0.001, "decay": 0.014, "filter": {"type": "lowpass", "freq": 2400, "q": 0.7}}
+    ],
+    "settings_paste": [
+      {"wave": "square", "at": 0, "freq": 900, "gain": 0.08, "attack": 0.001, "decay": 0.012, "filter": {"type": "lowpass", "freq": 2400, "q": 0.7}},
+      {"wave": "sine", "at": 0.035, "freq": 260, "freq_end": 130, "gain": 0.35, "attack": 0.002, "decay": 0.04},
+      {"wave": "noise", "at": 0.035, "gain": 0.14, "attack": 0.001, "decay": 0.008, "filter": {"type": "bandpass", "freq": 4200, "q": 2}}
+    ],
+    "discard": [
+      {"wave": "noise", "at": 0, "gain": 0.32, "attack": 0.005, "decay": 0.1, "filter": {"type": "lowpass", "freq": 1400, "freq_end": 260, "q": 0.9}},
+      {"wave": "sine", "at": 0, "freq": 120, "freq_end": 55, "gain": 0.35, "attack": 0.003, "decay": 0.08}
+    ],
+    "refused": [
+      {"wave": "square", "at": 0, "freq": 110, "gain": 0.12, "attack": 0.002, "decay": 0.09, "filter": {"type": "lowpass", "freq": 900, "q": 0.7}},
+      {"wave": "square", "at": 0, "freq": 117, "gain": 0.12, "attack": 0.002, "decay": 0.09, "filter": {"type": "lowpass", "freq": 900, "q": 0.7}}
+    ],
+    "win": [
+      {"wave": "triangle", "at": 0, "freq": 261.63, "gain": 0.12, "attack": 0.012, "decay": 0.9, "filter": {"type": "lowpass", "freq": 2600, "q": 0.7}},
+      {"wave": "triangle", "at": 0.08, "freq": 329.63, "gain": 0.11, "attack": 0.012, "decay": 0.85, "filter": {"type": "lowpass", "freq": 2600, "q": 0.7}},
+      {"wave": "triangle", "at": 0.16, "freq": 392, "gain": 0.11, "attack": 0.012, "decay": 0.8, "filter": {"type": "lowpass", "freq": 2600, "q": 0.7}},
+      {"wave": "triangle", "at": 0.24, "freq": 523.25, "gain": 0.1, "attack": 0.012, "decay": 0.9, "filter": {"type": "lowpass", "freq": 2600, "q": 0.7}}
+    ]
+  }
+}

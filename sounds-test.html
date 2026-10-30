@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The sound audition page: one button per event in data/sounds.json.
+       A local tool, not linked from the game. The policy is index.html's. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; connect-src 'self' wss://nos.lol wss://relay.ditto.pub wss://purplerelay.com wss://nostr.data.haus wss://relay.primal.net; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Sound test</title>
+</head>
+<body>
+  <main>
+    <h1>Sound test</h1>
+    <p><label>Volume <input id="volume" type="range" min="0" max="1" step="0.05" value="0.6"></label></p>
+    <div id="buttons"></div>
+  </main>
+  <script type="module" src="sounds-test.js?v=1c0fff8a061c"></script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+[
+  {
+    "version": "0.14.3",
+    "date": "2026-10-29",
+    "notes": [
+      "Items on belts no longer pile on top of each other."
+    ]
+  },
+  {
+    "version": "0.14.2",
+    "date": "2026-10-29",
+    "notes": [
+      "The main menu shows one of four factories at random.",
+      "Your best daily time is kept even if you close the tab right after winning."
+    ]
+  },
+  {
+    "version": "0.14.1",
+    "date": "2026-10-29",
+    "notes": [
+      "The daily game keeps your best time."
+    ]
+  },
+  {
+    "version": "0.14.0",
+    "date": "2026-10-29",
+    "notes": [
+      "New: save a finished factory and look at it again from the main menu.",
+      "Every building is on the bar at once."
+    ]
+  },
+  {
+    "version": "0.13.7",
+    "date": "2026-10-29",
+    "notes": [
+      "Dragging a pipe now follows the pointer."
+    ]
+  },
+  {
+    "version": "0.13.6",
+    "date": "2026-10-29",
+    "notes": [
+      "Forges and mixers need just 1 ore.",
+      "Forges and mixers show the color of what they hold.",
+      "Items keep their lane going into the exit.",
+      "Fixed the notch in the cut buttons.",
+      "A busier factory behind the main menu."
+    ]
+  },
+  {
+    "version": "0.13.5",
+    "date": "2026-10-29",
+    "notes": [
+      "Dragging a building other than a belt or pipe now follows the pointer."
+    ]
+  },
+  {
+    "version": "0.13.4",
+    "date": "2026-10-29",
+    "notes": [
+      "A factory now runs behind the main menu."
+    ]
+  },
+  {
+    "version": "0.13.3",
+    "date": "2026-10-29",
+    "notes": [
+      "Pumps and stampers show their work more clearly."
+    ]
+  },
+  {
+    "version": "0.13.2",
+    "date": "2026-10-29",
+    "notes": [
+      "Splitters, underground belts, pumps, stampers and pipes now animate."
+    ]
+  },
+  {
+    "version": "0.13.1",
+    "date": "2026-10-29",
+    "notes": [
+      "Mixed-color ore and lakes now sit on the normal floor."
+    ]
+  },
+  {
+    "version": "0.13.0",
+    "date": "2026-10-29",
+    "notes": [
+      "New: Daily game, the same map and recipe for everyone each day."
+    ]
+  },
+  {
+    "version": "0.12.4",
+    "date": "2026-10-29",
+    "notes": [
+      "Hover over ore or a lake to see its color."
+    ]
+  },
+  {
+    "version": "0.12.3",
+    "date": "2026-10-29",
+    "notes": [
+      "Online players on an older version are asked to reload."
+    ]
+  },
+  {
+    "version": "0.12.2",
+    "date": "2026-10-29",
+    "notes": [
+      "The room code stays on one line in the lobby."
+    ]
+  },
+  {
+    "version": "0.12.1",
+    "date": "2026-10-29",
+    "notes": [
+      "The game has a tab icon."
+    ]
+  },
+  {
+    "version": "0.12.0",
+    "date": "2026-10-29",
+    "notes": [
+      "A game clock next to the recipe.",
+      "The lobby has a Copy code button.",
+      "Hover works while you hold a building.",
+      "Every map has ore."
+    ]
+  },
+  {
+    "version": "0.11.3",
+    "date": "2026-10-29",
+    "notes": [
+      "Clicking a machine while holding a building opens its panel.",
+      "Fixed the tutorial stalling at the cutter step.",
+      "Hover shows liquids in pumps, forges and pipes.",
+      "Esc on the Solo game screen goes back to the main menu."
+    ]
+  },
+  {
+    "version": "0.11.2",
+    "date": "2026-10-29",
+    "notes": [
+      "Fixed the game clock running fast."
+    ]
+  },
+  {
+    "version": "0.11.1",
+    "date": "2026-10-29",
+    "notes": [
+      "Fixed Rematch showing the last game's recipe.",
+      "The HUD no longer hides the bottom of the map.",
+      "You can zoom out further."
+    ]
+  },
+  {
+    "version": "0.11.0",
+    "date": "2026-10-29",
+    "notes": [
+      "Hold Alt to see each cutter's cut and the color on each drill and pump.",
+      "Hovering a stamper shows its pieces.",
+      "Fixed the stamper's output facing the wrong way."
+    ]
+  },
+  {
+    "version": "0.10.0",
+    "date": "2026-10-29",
+    "notes": [
+      "New: a tutorial on the main menu."
+    ]
+  },
+  {
+    "version": "0.9.0",
+    "date": "2026-10-29",
+    "notes": [
+      "One Forge now makes plates from ore, liquid or paste.",
+      "The exit is bigger and easier to find."
+    ]
+  },
+  {
+    "version": "0.8.0",
+    "date": "2026-10-29",
+    "notes": [
+      "Clearer ghosts, with arrows for where each building takes and drops.",
+      "Machine panels show how much each input holds.",
+      "Pipes show the color of their liquid.",
+      "Items follow the curve of belt turns."
+    ]
+  },
+  {
+    "version": "0.7.0",
+    "date": "2026-10-29",
+    "notes": [
+      "New: Settings, with volume, edge pan and your own hotbar.",
+      "Hold Tab or click the recipe to see it large.",
+      "Machines move while they work.",
+      "Belts, splitters and underground belts can be placed over belts."
+    ]
+  },
+  {
+    "version": "0.6.0",
+    "date": "2026-10-28",
+    "notes": [
+      "Online players can pick a name.",
+      "Belt and pipe drags stay on one row or column.",
+      "Machine panels have an OK button.",
+      "A new cutter waits until you pick a cut."
+    ]
+  },
+  {
+    "version": "0.5.0",
+    "date": "2026-10-28",
+    "notes": [
+      "Inserters swing their arms."
+    ]
+  },
+  {
+    "version": "0.4.0",
+    "date": "2026-10-28",
+    "notes": [
+      "Drags build as you go, and one undo takes back a whole drag.",
+      "Holding an underground belt or pipe shows how far it reaches.",
+      "A pump touching a machine fills it without a pipe."
+    ]
+  },
+  {
+    "version": "0.3.0",
+    "date": "2026-10-28",
+    "notes": [
+      "New: online games. Host, then share the link or the room code."
+    ]
+  },
+  {
+    "version": "0.2.2",
+    "date": "2026-10-28",
+    "notes": [
+      "Q picks up the building under the pointer, even with something in hand."
+    ]
+  },
+  {
+    "version": "0.2.1",
+    "date": "2026-10-28",
+    "notes": [
+      "Fixed edge pan stopping over the HUD.",
+      "Fixed pipes not looking joined to pumps and machines."
+    ]
+  },
+  {
+    "version": "0.2.0",
+    "date": "2026-10-28",
+    "notes": [
+      "Drag to place, and right-drag to remove.",
+      "Undo, redo, box select, and copy and paste.",
+      "Sounds for your building actions.",
+      "Hover over an item to see it up close."
+    ]
+  },
+  {
+    "version": "0.1.0",
+    "date": "2026-10-28",
+    "notes": [
+      "First version: solo games, with a choice of difficulty and map size."
+    ]
+  }
+]

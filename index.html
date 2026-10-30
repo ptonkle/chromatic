@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Reference default, with online play's change (BUILDER-SPEC.md, D4):
+       connect-src adds exactly the pinned Nostr relays in web/online-config.js,
+       which the page contacts only after a player hosts or joins.
+       connect-src 'self' keeps fetches on this origin;
+       'wasm-unsafe-eval' lets the page compile its own WebAssembly module;
+       form-action 'none' blocks form posts. A meta policy cannot stop data
+       leaving by navigation, so the browser check still watches requests. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; connect-src 'self' wss://nos.lol wss://relay.ditto.pub wss://purplerelay.com wss://nostr.data.haus wss://relay.primal.net; style-src 'self'; img-src 'self' data: blob:; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Chromatic</title>
+  <link rel="stylesheet" href="style.css?v=1c0fff8a061c">
+  <link id="tab-icon" rel="icon" href="data:,">
+</head>
+<body data-ready="false" data-screen="">
+  <canvas id="world"></canvas>
+  <div id="ui">
+    <section id="menu" class="screen" hidden>
+      <img id="logo" alt="Chromatic" src="data/logo.png">
+      <div id="menu-buttons"></div>
+    </section>
+    <section id="setup" class="box modal" hidden></section>
+    <section id="online" class="box modal" hidden></section>
+    <section id="lobby" class="box modal" hidden></section>
+    <section id="scores" class="box" hidden></section>
+    <div id="countdown" class="box" hidden></div>
+    <div id="prompt" class="box" role="status" hidden></div>
+    <div id="output-tag" hidden></div>
+    <section id="recipe" class="box" hidden></section>
+    <section id="hotbar" class="box" hidden></section>
+    <section id="build" class="box" hidden></section>
+    <section id="panel" class="box modal" hidden></section>
+    <section id="pause" class="box modal" hidden></section>
+    <section id="won" class="box modal" hidden></section>
+    <section id="settings" class="box modal" hidden></section>
+    <section id="notes" class="box modal" hidden></section>
+    <section id="saved" class="box modal" hidden></section>
+    <div id="viewing" hidden></div>
+    <button id="version" type="button" hidden></button>
+    <section id="hover" class="box" hidden></section>
+    <section id="recipe-view" class="box" hidden></section>
+    <div id="recipe-tip" class="box" hidden></div>
+  </div>
+  <p id="message" role="status"></p>
+  <noscript><p>This page needs JavaScript and WebAssembly.</p></noscript>
+  <script type="module" src="app.js?v=1c0fff8a061c"></script>
+</body>
+</html>
